@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type"
+	content="text/html; charset=windows-1251">
+<title>Чат</title>
+<link rel="stylesheet" href="/css/main.css" />
+</head>
+<body>
+	<!-- Вхід -->
+	<h1 id='userNameValue'></h1>
+	<!-- Область введення даних -->
+	<div id="username-page">
+		<!-- Форма для ідентифікації -->
+		<form id="usernameForm" name="usernameForm">
+
+			<div class="parent">
+				<div class="block">
+					<div id="formHeader">
+
+						<div id="formCaption">УВІЙТИ В ЧАТ</div>
+
+					</div>
+					<div class="line1">
+						<img src="p2.png" width="25px" height="25px"
+							style='vertical-align: bottom'>
+						<!--  
+						<input
+							pattern="([А-ЯІЇЙA-Z]{1}[а-яхіїйa-z]{2,})|([А-ЯІЇЙA-Z]{1}[а-яхїійa-z]{2,}[-]{1}[А-ЯІЇЙA-Z]{1}[а-яхїійa-z]{2,})"
+							title="Введіть Ваше ім'я правильно" placeholder="Логін"
+							class="input-data" id="name">
+						-->
+						<input class="input-data" id="name" placeholder="Логін">
+					</div>
+					<div class="line2">
+						<img src="m2.png" width="25px" height="25px"
+							style='vertical-align: bottom'>
+						<!--  
+						<input type="email"
+							pattern="[a-zA-Z0-9._-]+@[a-z]{1,}[.]{1}[a-z]{2,3}"
+							title="Введіть email корекстно" placeholder="Email"
+							class="input-data">
+						-->
+						<input class="input-data" placeholder="Email">
+					</div>
+					<div class="line3" align='center'>
+						<button type='submit' class='login'>УВІЙТИ</button>
+					</div>
+					<div align="center">
+						<h3 id='registryLink'>зареєструватися</h3>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+	<!-- Реєстрація -->
+	<div class='hidden' id='registry-page'>
+		<div class="parent" >
+			<form id="registryForm" name="registryForm">
+				<div class="block">
+					<div id="formHeader">
+						<div id="formCaption">РЕЄСТРАЦІЯ</div>
+					</div>
+					<div class="line1">
+						<img src="p2.png" width="25px" height="25px"
+							style='vertical-align: bottom'> 
+							<input
+							placeholder="Логін"
+							class="input-data"
+							id='newUserName'>
+					</div>
+					<div class="line1">
+						 <img src="o2.png" width="25px" height="25px"
+							style='vertical-align: bottom'>  
+							<input 
+							 placeholder="Пароль"
+							class="input-data"
+							id='firstPass'>
+					</div>
+					<div class="line1">
+						<div id="repeatPass">
+							<input
+							placeholder="Повторіть пароль"
+							class="input-data"
+							id='secondPass'>
+						</div>
+					</div>
+					<div class="line1" align='center'>
+						<button type='submit' class='login'>ПІДТВЕРДИТИ</button>
+					</div>
+					<div align="center">
+						<h3 id='returnLogin'>назад</h3>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+
+	<!-- Чат -->
+	<div id='chat-page' class='hidden'>
+		<!-- Загальний блок - список користувачів + список повідомлень -->
+		<div class="chatBox">
+			<!-- Список активних користувачів -->
+			<div class="userList">
+				<div id="usersListHeader">
+					<div id="usersListCaption">КОРИСТУВАЧІ</div>
+				</div>
+				<div class="list">
+
+					<div class="headrer"></div>
+
+					<ul id="userArea">
+
+					</ul>
+
+				</div>
+			</div>
+
+
+
+			<!-- Список повідомлень -->
+			<div class='messageList'>
+				<!-- Форма текст -->
+				<form id="messageForm" name="messageForm" nameForm="messageForm">
+					<!-- Область повідомлень -->
+					<div class="layer1">
+						<div class="connecting">З'єднання...</div>
+						<ul id="messageArea">
+
+						</ul>
+						<a id="messageDown" name="messageDown"></a>
+					</div>
+					<!-- Область для вводу повідомлення + відправка -->
+					<div class="messageAreaBox">
+						<div align="center">
+							<div style="float: left;">
+								<input type="text" name="" class="message-box"
+									placeholder="Введіть Ваше повідомлення..." type="text"
+									id="message" AUTOCOMPLETE="off">
+							</div>
+							<div>
+								<button type="submit" class="login">НАДІСЛАТИ</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- Бібліотеки JS -->
+	<script src="/js/sockjs.min.js"></script>
+	<script src="/js/stomp.min.js"></script>
+	<script src="/js/jquery.js"></script>
+	<script src="/js/dateFormat.js"></script>
+	<script src="/js/main.js"></script>
+</body>
+</html>
