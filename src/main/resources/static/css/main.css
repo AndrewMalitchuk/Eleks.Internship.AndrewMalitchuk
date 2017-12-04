@@ -105,19 +105,18 @@ body {
 	border-color: #FAFAFA transparent transparent transparent;
 }
 
-	.tri-right.right-top:after{
-		content: ' ';
-		position: absolute;
-		width: 0;
-		height: 0;
-		left: auto;
-		right: -20px;
-		top: 0px;
-		bottom: auto;
-		border: 20px solid;
-		border-color: #64B5F6 transparent transparent transparent;
-		
-	}
+.tri-right.right-top:after {
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+	left: auto;
+	right: -20px;
+	top: 0px;
+	bottom: auto;
+	border: 20px solid;
+	border-color: #64B5F6 transparent transparent transparent;
+}
 
 .talktext {
 	padding: 10px;
@@ -241,34 +240,123 @@ h5 {
 	text-align: center;
 }
 
-.circle:after{
-		vertical-align: bottom;
-		font-size: 20px;
-		content: ' \25CF';
-	}
-	#online{
-		color: #4CAF50;
-	}
-	#offline{
-		color: #F44336;
-	}
-	#mineMessage{
-		background-color: #64B5F6;
-	}
-	#usersListHeader{
-		border-bottom: 1px solid #424242; 
-		background-color: #424242; 
-	}
-	#usersListCaption{
-		padding: 10px; 
-		color: white; 
-		font-size: 20px; 
-		text-align: center;
-	}
-	#userListElem{
-		border-bottom: 1px solid #9E9E9E; 
-	}
-		#repeatPass{
-		float: right;
-		margin-bottom: 10px;
-	}
+.circle:after {
+	vertical-align: bottom;
+	font-size: 20px;
+	content: ' \25CF';
+}
+
+#online {
+	color: #4CAF50;
+}
+
+#offline {
+	color: #F44336;
+}
+
+#mineMessage {
+	background-color: #64B5F6;
+}
+
+#usersListHeader {
+	border-bottom: 1px solid #424242;
+	background-color: #424242;
+}
+
+#usersListCaption {
+	padding: 10px;
+	color: white;
+	font-size: 20px;
+	text-align: center;
+}
+
+#userListElem {
+	border-bottom: 1px solid #9E9E9E;
+}
+
+#repeatPass {
+	float: right;
+	margin-bottom: 10px;
+}
+
+#modal_form_success {
+	width: 300px;
+	height: 250px;
+	border-radius: 5px;
+	border: 1px solid #9E9E9E;
+	background: #fff;
+	position: fixed;
+	top: 45%;
+	left: 50%;
+	margin-top: -150px;
+	margin-left: -150px;
+	display: none;
+	opacity: 0;
+	z-index: 5;
+	padding: 20px 10px;
+	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+#modal_form_fail {
+	width: 250px;
+	height: 250px;
+	border-radius: 5px;
+	border: 1px solid #9E9E9E;
+	background: #fff;
+	position: fixed;
+	top: 45%;
+	left: 50%;
+	margin-top: -150px;
+	margin-left: -150px;
+	display: none;
+	opacity: 0;
+	z-index: 5;
+	padding: 20px 10px;
+	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+#overlay {
+	z-index: 3;
+	position: fixed;
+	background-color: #000;
+	opacity: 0.8;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0; /
+	cursor: pointer;
+	display: none;
+}
+
+#modal_form_login_fail {
+	width: 250px;
+	height: 250px;
+	border-radius: 5px;
+	border: 1px solid #9E9E9E;
+	background: #fff;
+	position: fixed;
+	top: 45%;
+	left: 50%;
+	margin-top: -150px;
+	margin-left: -150px;
+	display: none;
+	opacity: 0;
+	z-index: 5;
+	padding: 20px 10px;
+	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+#leaveJoinForm {
+	height: 50;
+	border-radius: 5px;
+	border: 1px solid #9E9E9E;
+	background: #fff;
+	position: fixed;
+	bottom: 10;
+	left: 10;
+	display: none;
+	opacity: 0;
+	z-index: 5;
+	padding: 20px 10px;
+	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}

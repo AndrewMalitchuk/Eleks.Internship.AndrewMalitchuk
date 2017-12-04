@@ -13,35 +13,23 @@
 	<div id="username-page">
 		<!-- Форма для ідентифікації -->
 		<form id="usernameForm" name="usernameForm">
-
 			<div class="parent">
 				<div class="block">
 					<div id="formHeader">
-
 						<div id="formCaption">УВІЙТИ В ЧАТ</div>
-
 					</div>
 					<div class="line1">
 						<img src="p2.png" width="25px" height="25px"
-							style='vertical-align: bottom'>
-						<!--  
-						<input
-							pattern="([А-ЯІЇЙA-Z]{1}[а-яхіїйa-z]{2,})|([А-ЯІЇЙA-Z]{1}[а-яхїійa-z]{2,}[-]{1}[А-ЯІЇЙA-Z]{1}[а-яхїійa-z]{2,})"
-							title="Введіть Ваше ім'я правильно" placeholder="Логін"
-							class="input-data" id="name">
-						-->
-						<input class="input-data" id="name" placeholder="Логін">
+							style='vertical-align: bottom'> <input class="input-data"
+							id="name" placeholder="Логін" pattern='[a-zA-Z0-9_.]{4,}'
+							title='Недопустима кількість символів'>
 					</div>
 					<div class="line2">
-						<img src="m2.png" width="25px" height="25px"
+						<img src="o2.png" width="25px" height="25px"
 							style='vertical-align: bottom'>
-						<!--  
-						<input type="email"
-							pattern="[a-zA-Z0-9._-]+@[a-z]{1,}[.]{1}[a-z]{2,3}"
-							title="Введіть email корекстно" placeholder="Email"
-							class="input-data">
-						-->
-						<input class="input-data" placeholder="Email">
+						<input class="input-data" placeholder="Пароль" id='pass'
+							pattern='[a-zA-Z0-9_.]{4,}'
+							title='Недопустима кількість символів'>
 					</div>
 					<div class="line3" align='center'>
 						<button type='submit' class='login'>УВІЙТИ</button>
@@ -53,9 +41,26 @@
 			</div>
 		</form>
 	</div>
+
+	<!-- Невдалий вхід -->
+	<div id="modal_form_login_fail">
+		<div class="line1">
+			<div style="padding: 10px; text-align: center;">
+				<img src="info.png" width="25px" height="25px"
+					style='vertical-align: bottom'> <span
+					style="font-size: 20px;">УВАГА</span>
+			</div>
+		</div>
+		<div class="line1" align='center'>Здійснено невдалу спробу
+			ввійти в аккаунт</div>
+		<div align="center">
+			<button class="login" id="logInFAIL">ЗРОЗУМІЛО</button>
+		</div>
+	</div>
+
 	<!-- Реєстрація -->
 	<div class='hidden' id='registry-page'>
-		<div class="parent" >
+		<div class="parent">
 			<form id="registryForm" name="registryForm">
 				<div class="block">
 					<div id="formHeader">
@@ -63,26 +68,21 @@
 					</div>
 					<div class="line1">
 						<img src="p2.png" width="25px" height="25px"
-							style='vertical-align: bottom'> 
-							<input
-							placeholder="Логін"
-							class="input-data"
-							id='newUserName'>
+							style='vertical-align: bottom'> <input placeholder="Логін"
+							class="input-data" id='newUserName' pattern='[a-zA-Z0-9_.]{4,}'
+							title='Недопустима кількість символів'>
 					</div>
 					<div class="line1">
-						 <img src="o2.png" width="25px" height="25px"
-							style='vertical-align: bottom'>  
-							<input 
-							 placeholder="Пароль"
-							class="input-data"
-							id='firstPass'>
+						<img src="o2.png" width="25px" height="25px"
+							style='vertical-align: bottom'> <input placeholder="Пароль"
+							class="input-data" id='firstPass' pattern='[a-zA-Z0-9_.]{4,}'
+							title='Недопустима кількість символів'>
 					</div>
 					<div class="line1">
 						<div id="repeatPass">
-							<input
-							placeholder="Повторіть пароль"
-							class="input-data"
-							id='secondPass'>
+							<input placeholder="Повторіть пароль" class="input-data"
+								id='secondPass' pattern='[a-zA-Z0-9_.]{4,}'
+								title='Недопустима кількість символів'>
 						</div>
 					</div>
 					<div class="line1" align='center'>
@@ -96,6 +96,39 @@
 		</div>
 	</div>
 
+	<!-- Успішна регістрація -->
+	<div id="modal_form_success">
+		<div class="line1">
+			<div style="padding: 10px; text-align: center;">
+				<img src="checkmark.png" width="25px" height="25px"
+					style='vertical-align: bottom'> <span
+					style="font-size: 20px;">РЕЄСТРАЦІЯ УСПІШНА</span>
+			</div>
+		</div>
+		<div class="line1" align='center'>
+			Вітаємо, <span id='modal_form_success_name'>USERNAME</span>. Аккаунт
+			успішно створено.
+		</div>
+		<div align="center">
+			<button class="login" id="registryOK">ЗРОЗУМІЛО</button>
+		</div>
+	</div>
+
+	<!-- Неуспішна регістрація -->
+	<div id="modal_form_fail">
+		<div class="line1">
+			<div style="padding: 10px; text-align: center;">
+				<img src="cross.png" width="25px" height="25px"
+					style='vertical-align: bottom'> <span
+					style="font-size: 20px;">РЕЄСТРАЦІЯ НЕВДАЛА</span>
+			</div>
+		</div>
+		<div class="line1" align='center'>Користувач з даним логіном вже
+			існує. Придумайте інший логін для реєстрації</div>
+		<div align="center">
+			<button class="login" id="registryFAIL">ЗРОЗУМІЛО</button>
+		</div>
+	</div>
 
 	<!-- Чат -->
 	<div id='chat-page' class='hidden'>
@@ -107,17 +140,12 @@
 					<div id="usersListCaption">КОРИСТУВАЧІ</div>
 				</div>
 				<div class="list">
-
 					<div class="headrer"></div>
-
 					<ul id="userArea">
 
 					</ul>
-
 				</div>
 			</div>
-
-
 
 			<!-- Список повідомлень -->
 			<div class='messageList'>
@@ -137,7 +165,9 @@
 							<div style="float: left;">
 								<input type="text" name="" class="message-box"
 									placeholder="Введіть Ваше повідомлення..." type="text"
-									id="message" AUTOCOMPLETE="off">
+									id="message" AUTOCOMPLETE="off"
+									pattern='[A-Za-zА-ЯІЇЙЄа-яіїйє0-9-!?., ]{0,256}'
+									title='Перевищено допустиму кількість символів (256)'>
 							</div>
 							<div>
 								<button type="submit" class="login">НАДІСЛАТИ</button>
@@ -148,6 +178,16 @@
 			</div>
 		</div>
 	</div>
+
+	<!-- Користувач підключився/відключився -->
+	<div id="leaveJoinForm">
+		<div class="line1">
+			<span id='userAct'></span>
+		</div>
+	</div>
+
+	<div id="overlay"></div>
+	
 	<!-- Бібліотеки JS -->
 	<script src="/js/sockjs.min.js"></script>
 	<script src="/js/stomp.min.js"></script>

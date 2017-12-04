@@ -4,11 +4,7 @@ import com.app.chat.model.Message;
 import com.app.chat.model.UpdateMessages;
 import com.app.chat.model.User;
 import  com.db.mysql.*;
-import com.app.chat.*;
 
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.ArrayList;
 
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -20,95 +16,70 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class ChatController {
 	
-
 	MySQL mysql=new MySQL("jdbc:mysql://localhost:3306/chatDB","root","root");
-	
+
     @MessageMapping("/chat.addUser") 
     @SendTo("/channel/public")
-	
-    public Message addUser(@Payload Message message, SimpMessageHeaderAccessor headerAccessor) {
-        headerAccessor.getSessionAttributes().put("username", message.getUser());
-        
-        /*
-        User user=new User();
-        user.setName(message.getUser());
-        user.setEmail("test");
-        
-        mysql.executeDataQuery(new Query("insert into `users` (username,email) values ('#','#')",user.getName(),user.getEmail()));
-        */
-        
-        //новий корисутвач
-        System.out.println("#accessed: "+message.getUser()+" "+message.getType());
-        return message;
+    public User addUser(@Payload User user, SimpMessageHeaderAccessor headerAccessor) {
+    	int id=mysql.userIdentification(user.getName(), user.getPassword());
+    	if(id==-1) {
+    		user.setId(id);
+    		return user;
+    	}
+    	else {
+    		user.setId(id);
+    		mysql.setOnline(user.getName());
+    		headerAccessor.getSessionAttributes().put("username", user.getName());//TODO: getName()→getId() 
+    	}
+    	return user;
     }
-    
+
     @MessageMapping("/chat.createUser")
     @SendTo("/channel/public")
-    
     public User createUser(@Payload User user, SimpMessageHeaderAccessor headerAccessor) {
     	headerAccessor.getSessionAttributes().put("username", user.getName());
-    	System.out.println("bef qu");
-  
-    	mysql.executeDataQuery(new Query("insert into `users` (userName,userPassword) values ('#','#')",user.getName(),user.getPassword()));
-    	System.out.println("af qu");
-        System.out.println("#create: "+user.getName()+" "+user.getPassword());
-        
-        return user;
+    	if(!mysql.userExist(user.getName())) { 
+	    	mysql.executeDataQuery(new Query("insert into `users` (userName,userPassword,userStatus) values ('#','#','offline')",user.getName(),user.getPassword()));
+	        headerAccessor.getSessionAttributes().put("username", user.getName());
+	        return user;
+    	}
+    	else{
+    		user.setId(-1);
+    		return user;
+    	}
     }
     
     
     
     @MessageMapping("/chat.sendMessage")
-    @SendTo("/channel/public")
+    @SendTo("/channel/public/data")
     public Message sendMessage(@Payload Message message) {
-    	//отримання повідомлення
-    	System.out.println("#send: "+message.getUser()+" "+message.getContent()+" "+message.getType());
-    	
-    	// mysql.executeDataQuery(new Query("insert into messages (userId,content,timeValue) value (#,'#','2017-11-27 16:21');",user.getName(),user.getEmail()));
-    	
+    	mysql.addMessage(message);
         return message;
     }
     
-    //XXX
+
     @MessageMapping("/chat.uploadData")
-    @SendTo("/channel/public")
+    @SendTo("/channel/public/data")
     public Message uploadData(@Payload Message message) {
-    	System.out.println("#upload: "+" "+message.getUser());
-    	//message.setContent("#upload#");
-    	///////////////////////////////////
-	    	List<Message> upload=new ArrayList<Message>();
-	    	Message m1=new Message();
-	    	m1.setContent("CONTENT1");
-	    	m1.setUser("USER1");
-	    	upload.add(m1);
-	    	Message m2=new Message();
-	    	m2.setContent("CONTENT2");
-	    	m2.setUser("USER2");  
-	    	upload.add(m2);
-    	////////////////////////////////////////////
-    	message.data=new ArrayList<Message>();
     	
-    	message.data=upload;
-    	///////////////////////////////////////////////
-    	
-    	/////////////////////////////////////////////////
-    	
+    	if(message.getType().toString().equals("UPLOAD")) {
+
     	message.upd=new UpdateMessages();
-    	
     	message.upd.data=new ArrayList<Message>();
-    	
-    	/*
-    	message.upd=new UpdateMessages();
-    	message.upd.setData(upload);
-    	*/
-    	message.upd.data=upload;
+    	message.upd.data=mysql.getMessagesForUpload();
     	
     	message.upd.users=new ArrayList<String>();
-    	message.upd.users.add("KEK1");
-    	message.upd.users.add("KEK2");
-    	////////////////////////////////////////////////////
-    	return message;
+    	message.upd.users=mysql.getActiveUsersForUpload();
     	
+    	return message;
+    	}
+    	else 
+    		return message;
+    	
+    		
     }
+    	
+    
     
 }
