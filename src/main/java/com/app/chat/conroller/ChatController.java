@@ -1,85 +1,60 @@
 package com.app.chat.conroller;
 
-import com.app.chat.model.Message;
-import com.app.chat.model.UpdateMessages;
-import com.app.chat.model.User;
-import  com.db.mysql.*;
+import java.util.List;
 
-import java.util.ArrayList;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.stereotype.Controller;
 
+import com.app.chat.model.Message;
+import com.app.chat.model.User;
+import com.app.chat.service.ChatService;
+
 @Controller
 public class ChatController {
-	
-	MySQL mysql=new MySQL("jdbc:mysql://localhost:3306/chatDB","root","root");
 
-    @MessageMapping("/chat.addUser") 
-    @SendTo("/channel/public")
-    public User addUser(@Payload User user, SimpMessageHeaderAccessor headerAccessor) {
-    	int id=mysql.userIdentification(user.getName(), user.getPassword());
-    	if(id==-1) {
-    		user.setId(id);
-    		return user;
-    	}
-    	else {
-    		user.setId(id);
-    		mysql.setOnline(user.getName());
-    		headerAccessor.getSessionAttributes().put("username", user.getName());//TODO: getName()→getId() 
-    	}
-    	return user;
-    }
+	@Autowired
+	ChatService service;
 
-    @MessageMapping("/chat.createUser")
-    @SendTo("/channel/public")
-    public User createUser(@Payload User user, SimpMessageHeaderAccessor headerAccessor) {
-    	headerAccessor.getSessionAttributes().put("username", user.getName());
-    	if(!mysql.userExist(user.getName())) { 
-	    	mysql.executeDataQuery(new Query("insert into `users` (userName,userPassword,userStatus) values ('#','#','offline')",user.getName(),user.getPassword()));
-	        headerAccessor.getSessionAttributes().put("username", user.getName());
-	        return user;
-    	}
-    	else{
-    		user.setId(-1);
-    		return user;
-    	}
-    }
-    
-    
-    
-    @MessageMapping("/chat.sendMessage")
-    @SendTo("/channel/public/data")
-    public Message sendMessage(@Payload Message message) {
-    	mysql.addMessage(message);
-        return message;
-    }
-    
+	@MessageMapping("/chat/addUserToChat")
+	@SendTo("/channel/public")
+	public User addUserToChat(@Payload User user, SimpMessageHeaderAccessor headerAccessor) {
+		return service.identifyUser(user, headerAccessor);
+	}
 
-    @MessageMapping("/chat.uploadData")
-    @SendTo("/channel/public/data")
-    public Message uploadData(@Payload Message message) {
-    	
-    	if(message.getType().toString().equals("UPLOAD")) {
+	@MessageMapping("/chat/createUser")
+	@SendTo("/channel/public")
+	public User createUser(@Payload User user, SimpMessageHeaderAccessor headerAccessor) {
+		return service.addNewUser(user, headerAccessor);
+	}
 
-    	message.upd=new UpdateMessages();
-    	message.upd.data=new ArrayList<Message>();
-    	message.upd.data=mysql.getMessagesForUpload();
-    	
-    	message.upd.users=new ArrayList<String>();
-    	message.upd.users=mysql.getActiveUsersForUpload();
-    	
-    	return message;
-    	}
-    	else 
-    		return message;
-    	
-    		
-    }
-    	
-    
-    
+	@MessageMapping("/chat/sendMessage")
+	@SendTo("/channel/public/data")
+	public Message sendMessage(@Payload Message message) {
+		if (message.getType() == Message.MessageType.CHAT)
+			service.saveMessage(message);
+		return message;
+	}
+
+	@MessageMapping("/chat/uploadMessages")
+	@SendTo("/channel/public/uploadMessages")
+	public List<Message> uploadMessages(@Payload Message message) {
+		if (message.getType() == Message.MessageType.UPLOAD)
+			return service.getMessages();
+		else
+			return null;
+	}
+
+	@MessageMapping("/chat/uploadUsers")
+	@SendTo("/channel/public/uploadUsers")
+	public List<String> uploadUsers(@Payload Message message) {
+		if (message.getType() == Message.MessageType.UPLOAD)
+			return service.getUsers();
+		else
+			return null;
+	}
+
 }

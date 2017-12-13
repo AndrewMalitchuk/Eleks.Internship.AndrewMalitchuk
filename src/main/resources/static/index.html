@@ -4,35 +4,36 @@
 <meta http-equiv="Content-Type"
 	content="text/html; charset=windows-1251">
 <title>Чат</title>
-<link rel="stylesheet" href="/css/main.css" />
+<link rel="stylesheet" href="/css/chatPage.css" />
+<link rel="stylesheet" href="/css/formElements.css" />
+<link rel="stylesheet" href="/css/popUp.css" />
 </head>
 <body>
+
 	<!-- Вхід -->
-	<h1 id='userNameValue'></h1>
-	<!-- Область введення даних -->
-	<div id="username-page">
+	<div id="loginPage">
+
 		<!-- Форма для ідентифікації -->
-		<form id="usernameForm" name="usernameForm">
-			<div class="parent">
-				<div class="block">
+		<form id="logInForm" name="logInForm">
+			<div class="pageSpace">
+				<div class="formBlock">
 					<div id="formHeader">
 						<div id="formCaption">УВІЙТИ В ЧАТ</div>
 					</div>
-					<div class="line1">
-						<img src="p2.png" width="25px" height="25px"
+					<div class="formLine">
+						<img src="/images/login.png" width="25px" height="25px"
 							style='vertical-align: bottom'> <input class="input-data"
 							id="name" placeholder="Логін" pattern='[a-zA-Z0-9_.]{4,}'
-							title='Недопустима кількість символів'>
+							required title='Недопустима кількість символів'>
 					</div>
-					<div class="line2">
-						<img src="o2.png" width="25px" height="25px"
-							style='vertical-align: bottom'>
-						<input class="input-data" placeholder="Пароль" id='pass'
-							pattern='[a-zA-Z0-9_.]{4,}'
-							title='Недопустима кількість символів'>
+					<div class="formLine">
+						<img src="/images/lock.png" width="25px" height="25px"
+							style='vertical-align: bottom'> <input class="input-data"
+							placeholder="Пароль" id='pass' pattern='[a-zA-Z0-9_.]{4,}'
+							required title='Недопустима кількість символів' type="password">
 					</div>
-					<div class="line3" align='center'>
-						<button type='submit' class='login'>УВІЙТИ</button>
+					<div class="formLine" align='center'>
+						<button type='submit' class='formButton'>УВІЙТИ</button>
 					</div>
 					<div align="center">
 						<h3 id='registryLink'>зареєструватися</h3>
@@ -43,50 +44,50 @@
 	</div>
 
 	<!-- Невдалий вхід -->
-	<div id="modal_form_login_fail">
-		<div class="line1">
+	<div id="popUpLogInFail">
+		<div class="formLine">
 			<div style="padding: 10px; text-align: center;">
-				<img src="info.png" width="25px" height="25px"
+				<img src="/images/info.png" width="25px" height="25px"
 					style='vertical-align: bottom'> <span
-					style="font-size: 20px;">УВАГА</span>
+					style="font-size: 20px;">ПОМИЛКА</span>
 			</div>
 		</div>
-		<div class="line1" align='center'>Здійснено невдалу спробу
-			ввійти в аккаунт</div>
+		<div class="formLine" align='center'>Здійснено невдалу спробу
+			ввійти в аккаунт. Перевірьте правельність логіну та паролю.</div>
 		<div align="center">
-			<button class="login" id="logInFAIL">ЗРОЗУМІЛО</button>
+			<button class="formButton" id="popUpLoginFailButton">ЗРОЗУМІЛО</button>
 		</div>
 	</div>
 
 	<!-- Реєстрація -->
-	<div class='hidden' id='registry-page'>
-		<div class="parent">
-			<form id="registryForm" name="registryForm">
-				<div class="block">
+	<div class='hidden' id='checkInPage'>
+		<div class="pageSpace">
+			<form id="checkInForm" name="checkInForm">
+				<div class="formBlock">
 					<div id="formHeader">
 						<div id="formCaption">РЕЄСТРАЦІЯ</div>
 					</div>
-					<div class="line1">
-						<img src="p2.png" width="25px" height="25px"
+					<div class="formLine">
+						<img src="/images/login.png" width="25px" height="25px"
 							style='vertical-align: bottom'> <input placeholder="Логін"
 							class="input-data" id='newUserName' pattern='[a-zA-Z0-9_.]{4,}'
-							title='Недопустима кількість символів'>
+							required title='Недопустима кількість символів'>
 					</div>
-					<div class="line1">
-						<img src="o2.png" width="25px" height="25px"
+					<div class="formLine">
+						<img src="/images/lock.png" width="25px" height="25px"
 							style='vertical-align: bottom'> <input placeholder="Пароль"
 							class="input-data" id='firstPass' pattern='[a-zA-Z0-9_.]{4,}'
-							title='Недопустима кількість символів'>
+							required title='Недопустима кількість символів' type="password">
 					</div>
-					<div class="line1">
+					<div class="formLine">
 						<div id="repeatPass">
 							<input placeholder="Повторіть пароль" class="input-data"
-								id='secondPass' pattern='[a-zA-Z0-9_.]{4,}'
-								title='Недопустима кількість символів'>
+								id='secondPass' pattern='[a-zA-Z0-9_.]{4,}' required
+								title='Недопустима кількість символів' type="password">
 						</div>
 					</div>
-					<div class="line1" align='center'>
-						<button type='submit' class='login'>ПІДТВЕРДИТИ</button>
+					<div class="formLine" align='center'>
+						<button type='submit' class='formButton'>ПІДТВЕРДИТИ</button>
 					</div>
 					<div align="center">
 						<h3 id='returnLogin'>назад</h3>
@@ -97,80 +98,94 @@
 	</div>
 
 	<!-- Успішна регістрація -->
-	<div id="modal_form_success">
-		<div class="line1">
+	<div id="popUpCheckInSuccess">
+		<div class="formLine">
 			<div style="padding: 10px; text-align: center;">
-				<img src="checkmark.png" width="25px" height="25px"
+				<img src="/images/checkmark.png" width="25px" height="25px"
 					style='vertical-align: bottom'> <span
 					style="font-size: 20px;">РЕЄСТРАЦІЯ УСПІШНА</span>
 			</div>
 		</div>
-		<div class="line1" align='center'>
-			Вітаємо, <span id='modal_form_success_name'>USERNAME</span>. Аккаунт
-			успішно створено.
+		<div class="formLine" align='center'>
+			Вітаємо, <span id='popUpCheckInSuccessUserName'>USERNAME</span>.
+			Аккаунт успішно створено.
 		</div>
 		<div align="center">
-			<button class="login" id="registryOK">ЗРОЗУМІЛО</button>
+			<button class="formButton" id="popUpCheckInSuccessOkButton">ЗРОЗУМІЛО</button>
 		</div>
 	</div>
 
 	<!-- Неуспішна регістрація -->
-	<div id="modal_form_fail">
-		<div class="line1">
+	<div id="popUpCheckInFail">
+		<div class="formLine">
 			<div style="padding: 10px; text-align: center;">
-				<img src="cross.png" width="25px" height="25px"
+				<img src="/images/cross.png" width="25px" height="25px"
 					style='vertical-align: bottom'> <span
 					style="font-size: 20px;">РЕЄСТРАЦІЯ НЕВДАЛА</span>
 			</div>
 		</div>
-		<div class="line1" align='center'>Користувач з даним логіном вже
-			існує. Придумайте інший логін для реєстрації</div>
+		<div class="formLine" align='center'>Користувач з даним логіном
+			вже існує. Придумайте інший логін для реєстрації</div>
 		<div align="center">
-			<button class="login" id="registryFAIL">ЗРОЗУМІЛО</button>
+			<button class="formButton" id="popUpCheckInFailOkButton">ЗРОЗУМІЛО</button>
 		</div>
 	</div>
 
 	<!-- Чат -->
-	<div id='chat-page' class='hidden'>
+	<div id='chatPage' class='hidden'>
+
 		<!-- Загальний блок - список користувачів + список повідомлень -->
 		<div class="chatBox">
-			<!-- Список активних користувачів -->
-			<div class="userList">
-				<div id="usersListHeader">
-					<div id="usersListCaption">КОРИСТУВАЧІ</div>
-				</div>
-				<div class="list">
-					<div class="headrer"></div>
-					<ul id="userArea">
+			<div style="float: left;">
 
-					</ul>
+				<!-- Список активних користувачів -->
+				<div class="userListBox">
+					<div id="usersListHeader">
+						<div id="usersListCaption">КОРИСТУВАЧІ</div>
+					</div>
+					<div class="listOfUsers">
+
+						<ul id="userArea">
+
+						</ul>
+					</div>
+				</div>
+
+				<!-- Панель пошуку-->
+				<div class="searchBox">
+					<input name="" class="searchBoxInput"
+						placeholder="Kритерій пошуку..." type="text">
+					<div style="float: right; padding-top: 10px; padding-right: 8px;">
+						<img src="/images/search.png" style="width: 32px; height: 32px;"
+							id='search'>
+					</div>
 				</div>
 			</div>
 
 			<!-- Список повідомлень -->
 			<div class='messageList'>
+
 				<!-- Форма текст -->
-				<form id="messageForm" name="messageForm" nameForm="messageForm">
+				<form id="messageForm" name="messageForm">
 					<!-- Область повідомлень -->
-					<div class="layer1">
+					<div class="messageLayer" id='scrollBarStyle'>
 						<div class="connecting">З'єднання...</div>
 						<ul id="messageArea">
 
 						</ul>
 						<a id="messageDown" name="messageDown"></a>
 					</div>
-					<!-- Область для вводу повідомлення + відправка -->
+
+					<!-- Область для вводу повідомлення -->
 					<div class="messageAreaBox">
 						<div align="center">
 							<div style="float: left;">
 								<input type="text" name="" class="message-box"
 									placeholder="Введіть Ваше повідомлення..." type="text"
-									id="message" AUTOCOMPLETE="off"
-									pattern='[A-Za-zА-ЯІЇЙЄа-яіїйє0-9-!?., ]{0,256}'
-									title='Перевищено допустиму кількість символів (256)'>
+									id="message" AUTOCOMPLETE="off" maxlength="256">
 							</div>
 							<div>
-								<button type="submit" class="login">НАДІСЛАТИ</button>
+								<button type="submit" class="formButton">НАДІСЛАТИ</button>
 							</div>
 						</div>
 					</div>
@@ -181,18 +196,54 @@
 
 	<!-- Користувач підключився/відключився -->
 	<div id="leaveJoinForm">
-		<div class="line1">
+		<div class="formLine">
 			<span id='userAct'></span>
 		</div>
 	</div>
 
+	<!-- Помилка -->
+	<div id="popUpError">
+		<div class="formLine">
+			<div style="padding: 10px; text-align: center;">
+				<img src="/images/cross.png" width="25px" height="25px"
+					style='vertical-align: bottom'> <span
+					style="font-size: 20px;">ПОМИЛКА</span>
+			</div>
+		</div>
+		<div class="formLine" align="center">Втрачено з'єднання з
+			сервером. Перевантажте сторінку</div>
+		<div align="center">
+			<button class="formButton" id="popUpErrorOkButton">ЗРОЗУМІЛО</button>
+		</div>
+	</div>
+
+	<!-- Навігація по пошуку -->
+	<div id="searchRes">
+		<div style="float: left;">
+			<img src="/images/left.png" width="20px" height="20px"
+				style="vertical-align: bottom" id='leftBut'> <input
+				type="text" id="searchResId" readonly> <img
+				src="/images/right.png" width="20px" height="20px"
+				style="vertical-align: bottom" id='rightBut'>
+		</div>
+		<div style="float: right;">
+			<img src="/images/closeSearch.png" width="20px" height="20px"
+				style="vertical-align: bottom" id="closeSearch">
+		</div>
+	</div>
+
+	<!-- Невдалий пошук -->
+	<div id='searchResFail'>
+		<div style='text-align: center'>Пошук невдалий</div>
+	</div>
+
 	<div id="overlay"></div>
-	
-	<!-- Бібліотеки JS -->
+
+	<!-- JS -->
 	<script src="/js/sockjs.min.js"></script>
 	<script src="/js/stomp.min.js"></script>
 	<script src="/js/jquery.js"></script>
 	<script src="/js/dateFormat.js"></script>
-	<script src="/js/main.js"></script>
+	<script src="/js/main.js" charset="utf-8"></script>
 </body>
 </html>

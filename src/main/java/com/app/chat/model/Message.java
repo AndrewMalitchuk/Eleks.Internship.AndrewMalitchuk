@@ -1,7 +1,5 @@
 package com.app.chat.model;
 
-import java.util.List;
-
 public class Message {
 
 	private int userId;
@@ -9,9 +7,6 @@ public class Message {
 	private String user;
 	private MessageType type;
 	private String date;
-
-	public List<Message> data;
-	public UpdateMessages upd;
 
 	public enum MessageType {
 		CHAT, JOIN, LEAVE, UPLOAD
@@ -56,4 +51,5 @@ public class Message {
 	public void setDate(String date) {
 		this.date = date;
 	}
+
 }

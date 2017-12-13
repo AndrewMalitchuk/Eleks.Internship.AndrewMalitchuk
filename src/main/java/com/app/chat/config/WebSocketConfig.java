@@ -18,4 +18,5 @@ public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer {
 		registry.setApplicationDestinationPrefixes("/app");
 		registry.enableSimpleBroker("/channel");
 	}
+
 }
