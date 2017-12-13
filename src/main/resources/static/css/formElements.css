@@ -1,0 +1,118 @@
+.pageSpace {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	overflow: auto;
+}
+
+.formBlock {
+	width: auto;
+	height: auto;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -125px 0 0 -125px;
+	background-color: white;
+	border: 1px solid #9E9E9E;
+	border-radius: 5px;
+	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+	overflow: hidden;
+}
+
+.formLine {
+	margin: 10px 20px;
+}
+
+.formBlock h1 {
+	text-align: center;
+	font-size: 1.5em;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	color: #616161;
+}
+
+.formButton {
+	border: 0px;
+	color: #fff;
+	text-shadow: 0 1px rgba(0, 0, 0, 0.1);
+	background-color: #4d90fe;
+	height: 30px;
+	padding: 0 8px;
+	font-weight: 700;
+	text-align: center;
+}
+
+.formButton:hover {
+	text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+	background-color: #357ae8;
+}
+
+.input-data {
+	border: 1px solid #d9d9d9;
+	height: 20px;
+	font-size: 16px;
+}
+
+.input-data:hover {
+	border: 1px solid #b9b9b9;
+	border-top: 1px solid #a0a0a0;
+}
+
+.hidden {
+	display: none;
+}
+
+h3 {
+	font-size: 16px;
+	margin-top: 0px;
+	margin-bottom: 5px;
+}
+
+#formHeader {
+	border-bottom: 1px solid #424242;
+	background-color: #424242;
+}
+
+#formCaption {
+	padding: 10px;
+	color: white;
+	font-size: 20px;
+	text-align: center;
+}
+
+#repeatPass {
+	float: right;
+	margin-bottom: 10px;
+}
+
+#overlay {
+	z-index: 3;
+	position: fixed;
+	background-color: #000;
+	opacity: 0.8;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	cursor: pointer;
+	display: none;
+}
+
+#scrollBarStyle::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+	background-color: #f4f4f4;
+	border-left: 1px solid #9E9E9E;
+	border-bottom: 1px solid #9E9E9E;
+}
+
+#scrollBarStyle::-webkit-scrollbar {
+	width: 15px;
+	background-color: #f4f4f4;
+}
+
+#scrollBarStyle::-webkit-scrollbar-thumb {
+	background-color: #616161;
+	border: 1px solid #9E9E9E;
+}
