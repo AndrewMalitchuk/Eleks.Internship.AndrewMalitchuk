@@ -1,13 +1,10 @@
 # Eleks.Internship.AndrewMalitchuk
----
 Practical task of Andrew Malitchuk for Eleks Internship (Nov 2017)
 ## Student Info
----
 * *Name:* Andrii Malitchuk
 * *University:* КЕП ІФНТУНГ
 * *Course:* 4
 ## Task Info
----
 Реалізувати простий чат.
 
 ### Основні вимоги:
