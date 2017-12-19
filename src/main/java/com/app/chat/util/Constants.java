@@ -1,4 +1,4 @@
-package com.app.util;
+package com.app.chat.util;
 
 public class Constants {
 
