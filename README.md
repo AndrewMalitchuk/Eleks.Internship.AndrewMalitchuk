@@ -34,4 +34,4 @@ Practical task of Andrew Malitchuk for Eleks Internship (Nov 2017)
 * Вспливаючі вікна з інформацією про зміну активності користувача (вхід/вихід з чату).
 
 ### Приклад функціюваня:
-Переглянути демонстрацію можна на [(відео)](https://github.com/AndrewMalitchuk/ "Демонстрація")
+Переглянути демонстрацію можна на [(відео)](https://github.com/AndrewMalitchuk/Eleks.Internship.AndrewMalitchuk/blob/master/Readme/Простий%20чат%20додаток.mp4 "Демонстрація")
