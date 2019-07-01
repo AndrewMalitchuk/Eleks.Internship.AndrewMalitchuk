@@ -1,4 +1,4 @@
-# Eleks.Internship.AndrewMalitchuk
+# Chat Application
 Practical task of Andrew Malitchuk for Eleks Internship (Nov 2017)
 ## Student Info
 * *Name:* Andrii Malitchuk
