@@ -20,7 +20,7 @@ For client-side part were used next technologies:
 - CSS.
 - JavaScript.
 
-You can check demo on the [video]().
+You can check demo on the [video](https://github.com/AndrewMalitchuk/chat-application/blob/master/README/1.mp4).
 
 This application was created as an internship project in Eleks company.
 
