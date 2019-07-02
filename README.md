@@ -1,37 +1,43 @@
 # Chat Application
-Practical task of Andrew Malitchuk for Eleks Internship (Nov 2017)
-## Student Info
-* *Name:* Andrii Malitchuk
-* *University:* КЕП ІФНТУНГ
-* *Course:* 4
-## Task Info
-Реалізувати простий чат.
 
-### Інтерфейс сторінки складається з:
-* Вікна реєстрації (Check-In);
-* Вікна входу (Log-In);
-* Чат-вікна:
-    * Список активних користувачів;
-    * Область з повідомленнями;
-    * Область пошуку.
-* Вспливаючі вікна.
+Chatting app based on Spring Framework.
+
+## Overview
+
+This application is practical task for internship. The main goal was to create an application via Spring Boot to implement RESTful Web Service.
+
+For server-side part were used next technologies:
+
+- Spring Framework.
+- MySQL database.
+
+For client-side part were used next technologies:
+
+- jQuery.
+- SockJS.
+- STOMP.
+- HTML.
+- CSS.
+- JavaScript.
+
+You can check demo on the [video]().
+
+This application was created as an internship project in Eleks company.
+
+## Features
+
+* User log in/sign up.
+* Sending and receiving messages in chat room.
+* Displaying active users.
+* Validation:
+  * Login/password checking.
+  * Checking the existence of the user (login) when registering.
+* Messages searching.
+* Pop-up information about different chat actions.
 
 
-### Основні можливості:
-* Реєстрація нового користувача чату;
-* Вхід існуючого користувача в чат-кімнату;
-* Відправлення та отримання повідомлень;
-* Зберігання повідомлень в базу даних;
-* Завантаження повідомлень з бази даних та відображення їх на веб-сторінці при вході користувача;
-* Відображення активних користувачів.
+## Contributing
 
-### Додаткові можливості:
-* Перевірка правельності логіну та поролю при вході;
-* Перевірка існування користувача (логіну) при реєстрації;
-* Унеможливлення ситуації, коли існує два активних користувача;
-* Пошук повідомлень;
-* Навігація по результату пошуку;
-* Вспливаючі вікна з інформацією про зміну активності користувача (вхід/вихід з чату).
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-### Приклад функціюваня:
-Переглянути демонстрацію можна на [(відео)](https://github.com/AndrewMalitchuk/Eleks.Internship.AndrewMalitchuk/blob/master/Readme/Простий%20чат%20додаток.mp4 "Демонстрація")
+Please make sure to update tests as appropriate.
